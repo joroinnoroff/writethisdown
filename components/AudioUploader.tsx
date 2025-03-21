@@ -210,7 +210,7 @@ const AudioUploader = () => {
 
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold gradient-to-r from-indigo-600 to-purple-600 bg-clip-text  mb-4">
+          <h1 className="text-5xl font-bold gradient-to-r text-indigo-300  bg-clip-text  mb-4">
             Audio transcription
           </h1>
 
@@ -224,7 +224,7 @@ const AudioUploader = () => {
             {/**UPLOAD CARD */}
             <div className="relative group">
               <div className={`p-8 rounded-2xl backdrop-blur-xl transition-all duration-300
-        ${isRecording ? "bg-red-50/90 dark:bg-red-900/20 border-2 border-red-500 shadow-lg shadow-red-500/20" : " bg-white/50 dark:bg-gray-800/50 hover:bg-white/80 dark:hover:bg-gray-800/80 border-gray-200 dark:border-gray-200"}`}
+        ${isRecording ? "bg-red-50/90 dark:bg-red-900/20 border-2 border-red-500 shadow-sm shadow-red-500/20" : " bg-white/50 dark:bg-gray-800/50 hover:bg-white/80 dark:hover:bg-gray-800/80 border-gray-200 dark:border-gray-200"}`}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={handleDrop}>
                 <div className="flex flex-col items-center space-y-6">
@@ -243,7 +243,7 @@ const AudioUploader = () => {
 
 
                   <div className="text-center space-y-2">
-                    <h3 className="text-xl font-semibold text-gray-800 dark:bg-gray-200">
+                    <h3 className="text-xl py-3 px-3 rounded-lg font-semibold text-gray-800 dark:bg-gray-200">
                       {isRecording ?
                         "Recording in progress..."
                         : "Drop your audio file here"}
@@ -270,7 +270,7 @@ const AudioUploader = () => {
 
                   {!isRecording && (
                     <button onClick={() => fileInputRef.current?.click()}
-                      className="px-6 py-3 text-sm font-mediu text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600">
+                      className="px-6 py-3 text-sm font-mediu text-white bg-indigo-600 rounded-xl hover:bg-indigo-700 transition-colors shadow-sm shadow-indigo-600">
                       Choose file
                     </button>
                   )}
@@ -301,7 +301,7 @@ const AudioUploader = () => {
                 className={`
               py-4 px-6 rounded-xl font-medium flex itemscenter justify-center gap-2 transition-all ${!file || isLoading
                     ? "bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not cursor-not-allowed"
-                    : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600/20"
+                    : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm shadow-indigo-600/20"
                   } `}>
                 {isLoading ? (
                   <>
@@ -321,8 +321,8 @@ const AudioUploader = () => {
                 onClick={isRecording ? handleStopRecording : handleStartRecording}
                 disabled={!isSpeechSupported}
                 className={`py-4 px-6 rounded-xl font-medium flex items-center justify-center gap-2 transition-all ${isRecording ?
-                  "bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-600/20"
-                  : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600"
+                  "bg-red-600 hover:bg-red-700 text-white shadow-sm shadow-red-600/20"
+                  : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm shadow-indigo-600"
                   }`}
               >
                 {isRecording ? (
