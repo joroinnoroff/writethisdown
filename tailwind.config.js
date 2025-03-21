@@ -1,16 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-const { colors: defaultColors } = require("tailwindcss/defaultTheme");
-
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
+    // Add other directories if necessary
   ],
   theme: {
     extend: {
       colors: {
-        ...defaultColors,
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         border: "hsl(var(--border))",
