@@ -49,41 +49,42 @@ const AudioUploader = () => {
   useEffect(() => {
     if (!hasBrowser) return;
 
-    const SpeechRecognition = (window as any).speechRecognition || (window as any).webkitSpeechRecognition;
+    const SpeechRecognition =
+      (window as any).speechRecognition || (window as any).webkitSpeechRecognition;
 
     if (SpeechRecognition) {
       const recognition = new SpeechRecognition();
-      recognition.continious = true;
+      recognition.continuous = true;
       recognition.interimResults = true;
       recognition.lang = "en-US";
 
-
-      let finalTranscript = "";
+      const finalRef = { current: "" }; // bruker lokal ref
 
       recognition.onresult = (event: any) => {
         let interimTranscript = "";
-        for (let i = event.resultIndex; i < event.results.lenght; ++i) {
-          let transcript = event.results[i][0].transcript;
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          const transcript = event.results[i][0].transcript;
           if (event.results[i].isFinal) {
-            finalTranscript += transcript = " ";
+            finalRef.current += transcript + " ";
           } else {
             interimTranscript += transcript;
           }
         }
-        setTranscription(finalTranscript + interimTranscript);
+        setTranscription(finalRef.current + interimTranscript);
       };
-
 
       recognition.onerror = (event: any) => {
         console.log("speech rec error", event.error);
-
         setError(`speech reco error ${event.error}`);
         setIsRecording(false);
       };
 
+      recognition.onend = () => {
+        // Sikrer at det som ble tatt opp vises etter stopp
+        setTranscription(finalRef.current);
+      };
+
       recognitionRef.current = recognition;
-
-
     }
 
     return () => {
@@ -94,7 +95,6 @@ const AudioUploader = () => {
         mediaStream.getTracks().forEach((track) => track.stop());
       }
     };
-
   }, [hasBrowser]);
 
   //file handling funct
