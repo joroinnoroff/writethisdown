@@ -48,10 +48,7 @@
     --ring: 224.3 76.3% 48%;
   }
 
-  /* Apply Tailwind's utility classes directly */
-  * {
-    border-color: hsl(var(--border));
-  }
+
 
   body {
     background-color: hsl(var(--background));
